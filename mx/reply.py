@@ -23,7 +23,7 @@ def articles(message):
             "登录首页",
             "https://www.baidu.com/img/bd_logo1.png?where=super",
             "https://www.baidu.com/img/bd_logo1.png?where=super",
-            'http://wdw.summeroo.club/m/index/'.format(message.source)
+            'http://wdw.summeroo.club/m/index/{0}'.format(message.source)
         ]
     ]
 
