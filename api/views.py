@@ -4,7 +4,7 @@ from django.views.generic.base import View
 from .models import User, Item, Result
 from .form import UserForm, ItemListForm,ItemForm, ResultForm
 from .tool import get_error_json, get_data_json, CreatePage
-from mx.reply import sendMessage
+from mx.reply import send_message
 
 
 class UserView(View):
@@ -150,8 +150,10 @@ class ResultListView(View):
                 lng = request.POST.get('lng', '')
                 lat = request.POST.get('lat', '')
                 address = request.POST.get('address', '')
-                Result.objects.create(user=user[0], item=item[0], flag=int(flag), ip=ip, lng=lng, lat=lat, address=address)
-                sendMessage()
+                result =  Result.objects.create(user=user[0], item=item[0], flag=int(flag), ip=ip, lng=lng, lat=lat, address=address)
+                # 告知用户定位结果
+                url = 'http://wdw.summeroo.club/m/itemresult/{0}?itemid={1}&resultid={1}'.format(openid, itemid, result.id)
+                send_message(openid, int(flag), url)
                 return HttpResponse('{"status":"success"}', content_type='application/json')
             else:
                return HttpResponseBadRequest('{"status":"error", "error":1001, "msg":"没有此用户或定位"}',
