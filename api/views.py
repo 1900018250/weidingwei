@@ -5,6 +5,7 @@ from .models import User, Item, Result
 from .form import UserForm, ItemListForm,ItemForm, ResultForm
 from .tool import get_error_json, get_data_json, CreatePage
 from mx.reply import send_message
+from HOST import HOST
 
 
 class UserView(View):
@@ -67,7 +68,7 @@ class ItemListView(View):
         active_form = ItemListForm(request.POST)
         if active_form.is_valid():
             random_str = CreatePage.get_random_str()
-            pro_link = 'http://wdw.summeroo.club/dw/{0}/'.format(random_str)
+            pro_link = '{0}dw/{1}/'.format(HOST, random_str)
             openid = request.POST.get('openid', '')
             user = User.objects.get(openid=openid)
             title = request.POST.get('title', '')
@@ -152,7 +153,7 @@ class ResultListView(View):
                 address = request.POST.get('address', '')
                 result =  Result.objects.create(user=user[0], item=item[0], flag=int(flag), ip=ip, lng=lng, lat=lat, address=address)
                 # 告知用户定位结果
-                url = 'http://wdw.summeroo.club/m/itemresult/{0}?itemid={1}&resultid={1}'.format(openid, itemid, result.id)
+                url = '{0}m/resultdetails/{1}?itemid={2}&resultid={3}'.format(HOST, openid, itemid, result.id)
                 send_message(openid, int(flag), url)
                 return HttpResponse('{"status":"success"}', content_type='application/json')
             else:

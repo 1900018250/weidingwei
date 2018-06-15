@@ -1,5 +1,5 @@
 import werobot
-
+from HOST import HOST
 from werobot.replies import ArticlesReply, Article
 robot = werobot.WeRoBot(token='tokenhere')
 
@@ -23,7 +23,7 @@ def articles(message):
             "登录首页",
             "https://www.baidu.com/img/bd_logo1.png?where=super",
             "https://www.baidu.com/img/bd_logo1.png?where=super",
-            'http://wdw.summeroo.club/m/index/{0}'.format(message.source)
+            '{0}m/index/{1}'.format(HOST ,message.source)
         ]
     ]
 
