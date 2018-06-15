@@ -25,7 +25,7 @@ SECRET_KEY = 'ki-jrs3bt)-+ac_b-uo+c0em!kfbpf^q0d_%5yazsid2*ax#2y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['a1900018250.imwork.net', '127.0.0.1', 'wdw.summeroo.club']
+ALLOWED_HOSTS = ['a1900018250.imwork.net', '127.0.0.1', 'wdw.summeroo.club', '132.232.12.217']
 
 
 # Application definition
