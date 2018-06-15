@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>用户信息</title>
+    <link rel="stylesheet" href="{% static 'm/lib/iconFont/iconfont.css' %}">
+    <link rel="stylesheet" href="{% static 'm/css/user.css' %}">
+</head>
+<body>
+ <div class="wdw-container">
+    <!-- 头部  -->
+    <header class="wdw-header">
+        <h1>个人中心</h1>
+    </header>
+    <!-- 个人信息 -->
+    <div class="user-info clearFix">
+        <form action="#">
+            <label for="user_email">我的邮箱</label>
+            <input name="email" type="email" id="user_email" />
+            <label for="user_phone">我的手机号码</label>
+            <input name="phone" type="text" id="user_phone" />
+            <div class="clearFix">
+                <div class="open-email-wrap f-left ">
+                    <input name="isemail"  type="checkbox" id="open-email"/>
+                    <label for="open-email">开启邮箱提醒</label>
+                </div>
+                <div class="open-phone-wrap f-right">
+                    <input name="isphone" type="checkbox" id="open-phone"/>
+                    <label for="open-phone">开启短信提醒</label>
+                </div>
+            </div>
+            <button type="submit" id="submit">提交</button>
+        </form>
+    </div>
+    <!-- 底部导航 -->
+    <footer class="wdw-footer">
+            <ul>
+                <li data-link="index"><i class="iconfont icon-compass"></i>定位</li>
+                <li class="now" data-link="user"><i class="iconfont icon-user"></i>个人中心</li>
+                <li data-link="help"><i class="iconfont icon-question"></i>帮助</li>
+            </ul>
+    </footer>
+ </div>
+ <script src="{% static 'm/lib/template/template-web.js' %}"></script>
+ <script src="{% static 'm/lib/zepto/zepto.min.js' %}"></script>
+ <script src="{% static 'm/lib/zepto/touch.js' %}"></script>
+ <script src="{% static 'm/lib/sweetalert/sweetalert.min.js' %}"></script>
+ <script src="{% static 'm/js/common.js' %}"></script>
+ <script src="{% static 'm/js/user.js' %}"></script>
+ <script></script>
+</html>

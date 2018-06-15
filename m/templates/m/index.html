@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>定位首页</title>
+    <link rel="stylesheet" href="{% static 'm/lib/iconFont/iconfont.css' %}">
+    <link rel="stylesheet" href="{% static 'm/css/index.css' %}">
+    <style>
+        /* .swal-button{
+            background: #eae7d4;
+        }
+
+        .swal-button:focus {
+            box-shadow: 0 0 0 0;
+        } */
+    </style>
+</head>
+<body>
+ <div class="wdw-container">
+    <!-- 头部  -->
+    <header class="wdw-header">
+        <h1>定位列表</h1>
+        <a class="right" id="refresh" href="javascript:;"><i class="iconfont icon-sync"></i></a>
+    </header>
+    <!-- 添加item按钮 -->
+    <div class="add-item-bt">
+        <button type="button"><i class="iconfont icon-plus"></i>添加定位</button>
+    </div>
+    <!-- item列表 -->
+    <ul class="item-list">
+       
+    </ul>
+    <!-- 底部导航 -->
+    <footer class="wdw-footer">
+        <ul>
+            <li class="now" data-link="index"><i class="iconfont icon-compass"></i>定位</li>
+            <li data-link="user"><i class="iconfont icon-user"></i>个人中心</li>
+            <li data-link="help"><i class="iconfont icon-question"></i>帮助</li>
+        </ul>
+    </footer>
+ </div>
+ <!-- 遮挡层 -->
+ <div class="mask"></div>
+ <!-- item添加框 -->
+ <div class="add-item">
+     <div class="content">
+         <form action="#" id="" accept-charset="utf-8">
+             <div class="item-name">
+                <span>定位名称:</span>
+                <input type="text" name="title" value="" placeholder="请输入定位名称">
+             </div>
+             <div class="link-name">
+                <span>链接名称:</span>
+                <input type="text" name="name" value="" placeholder="请输入链接名称">
+             </div>
+             <div class="link-address">
+                <span>链接地址:</span>
+                <input type="text" name="link" value="" placeholder="请输入链接地址">
+             </div>
+             <div class="link-details">
+                <span>链接描述:</span>
+                <textarea name="details" id="" placeholder="请输入链接描述"></textarea>
+             </div>
+             <div class="bt">
+                <button type="button">返回</button>
+                <button type="submit">确定</button>
+             </div>
+         </form>
+     </div>
+ </div>
+
+ <div class="error">
+
+ </div>
+ <script src="{% static 'm/lib/template/template-web.js' %}"></script>
+ <!-- item模板 -->
+ <script id="item" type="text/x-art-html">
+   <? for (let i = itemList.length - 1; i >= 0; i--) { ?>
+        <li data-itemid="<?= itemList[i].id ?>">
+            <h3><?= itemList[i].title ?></h3>
+            <p>创建时间： <?= itemList[i].add_time ?></p>
+            <p>最新位置更新时间: <?= itemList[i].add_time ?></p>
+            <i id="del" class="iconfont icon-close"></i>
+        </li>
+    <? } ?>
+</script>
+ <script src="{% static 'm/lib/zepto/zepto.min.js' %}"></script>
+ <script src="{% static 'm/lib/zepto/touch.js' %}"></script>
+ <script src="{% static 'm/lib/zepto/selector.js' %}"></script>
+ <script src="{% static 'm/lib/sweetalert/sweetalert.min.js' %}"></script>
+ <script src="{% static 'm/js/common.js' %}"></script>
+ <script src="{% static 'm/js/index.js' %}"></script>
+ <script>
+$(function(){
+    // $('.wdw-footer ul').on('tap', 'li', function() {alert(1)})
+})
+ </script>
+</body>
+</html>

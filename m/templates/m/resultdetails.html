@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>帮助</title>
+    <link rel="stylesheet" href="{% static 'm/lib/iconFont/iconfont.css' %}">
+    <link rel="stylesheet" href="{% static 'm/css/resultDetails.css' %}">
+    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.6&key=754fb443d364313111a264b2f6056ef5"></script>
+</head>
+<body>
+
+ <div class="wdw-container">
+    <!-- 头部  -->
+    <header class="wdw-header">
+        <a class="left" href="javascript:;"><i class="iconfont icon-left"></i></a>
+        <h1>结果详情</h1>
+    </header>
+    <!-- 地图 -->
+    <div class="map" id="container"></div>
+    <!-- 定位详情 -->
+    <div class="map-details">
+        <p>定位时间：<span></span></p>
+        <p>定位地址: <span></span></p>
+        <p>定位经纬度: <span></span></p>
+        <p>定位IP： <span></span></p>
+    </div>
+ </div>
+ <script src="{% static 'm/lib/template/template-web.js' %}"></script>
+ <script src="{% static 'm/lib/zepto/zepto.min.js' %}"></script>
+ <script src="{% static 'm/lib/zepto/touch.js' %}"></script>
+ <script src="{% static 'm/lib/zepto/selector.js' %}"></script>
+ <script src="{% static 'm/lib/sweetalert/sweetalert.min.js' %}"></script>
+ <script src="{% static 'm/js/common.js' %}"></script>
+ <script src="{% static 'm/js/resultDetails.js' %}"></script>
+ <script>
+
+ </script>
+</body>
+</html>

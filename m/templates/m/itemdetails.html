@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>定位item详情</title>
+    <link rel="stylesheet" href="{% static 'm/lib/iconFont/iconfont.css' %}">
+    <link rel="stylesheet" href="{% static 'm/css/itemDetails.css' %}">
+</head>
+<body>
+
+ <div class="wdw-container">
+    <!-- 头部  -->
+    <header class="wdw-header">
+        <a class="left" href="javascript:;"><i class="iconfont icon-left"></i></a>
+        <h1>定位详情</h1>
+    </header>
+    <!-- 定位标题 -->
+    <h2></h2>
+    <!-- 连接地址 -->
+    <p class="link-address" style="position: relative;">
+            连接地址: 
+        <span></span>
+        <!-- 隐藏的复制 -->
+        <textarea id="copy" style="position: absolute;top: 0;left: 0;opacity: 0;z-index: -10;"></textarea>
+        <button type="button">复制地址</button>
+    </p>
+    <!-- 连接分享 -->
+    <div class="share-link clearFix">
+        <button type="button">微信分享</button>
+        <button type="button">QQ分享</button>
+    </div>
+    <!-- 查看定位结果 -->
+    <div class="look-result">
+        <button type="button">查看定位结果</button>
+    </div>
+    <!-- 操作说明 -->
+    <div class="help">
+        <h3>操作说明:</h3>
+        <p>
+           复制连接可以直接通过各种途径发送<br>
+           微信，QQ分享可以发送带说明的连接
+        </p>
+    </div>
+ </div>
+
+ <script src="{% static 'm/lib/template/template-web.js' %}"></script>
+ <script src="{% static 'm/lib/zepto/zepto.min.js' %}"></script>
+ <script src="{% static 'm/lib/zepto/touch.js' %}"></script>
+ <script src="{% static 'm/lib/zepto/selector.js' %}"></script>
+ <script src="{% static 'm/lib/sweetalert/sweetalert.min.js' %}"></script>
+ <script src="{% static 'm/js/common.js' %}"></script>
+ <script src="{% static 'm/js/itemDetails.js' %}"></script>
+ <script> 
+</script>
+</body>
+</html>

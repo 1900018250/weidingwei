@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>帮助</title>
+    <link rel="stylesheet" href="{% static 'm/lib/iconFont/iconfont.css' %}">
+    <link rel="stylesheet" href="{% static 'm/css/help.css' %}">
+</head>
+<body>
+ <div class="wdw-container">
+    <!-- 头部  -->
+    <header class="wdw-header">
+        <h1>帮助</h1>
+        <a class="right" href="javascript:;"><i class="iconfont icon-sync"></i></a>
+    </header>
+    <!-- 内容待完成 -->
+    <!-- 底部导航 -->
+     <div style="padding: 0.3rem 0.3rem ;font-size: 0.3rem; line-height: 0.7rem">
+         <p>1.在定位页面创建连接（注意网址连接需要加上http://或者https://前缀）<br>
+            2.然后进入连接详情，复制生成的连接地址<br>
+            3.把这个地址发给你想定位的朋友<br>
+            4.如果他打开这个连接并且确定定位权限就可以获取精确定位<br>
+            5.如果没有授权定位权限就依据ip进行定位<br>
+            6.定位结果可以在连接详情里的查看定位结果查看<br>
+         </p>
+     </div>
+    <footer class="wdw-footer">
+        <ul>
+            <li data-link="index"><i class="iconfont icon-compass"></i>定位</li>
+            <li data-link="user"><i class="iconfont icon-user"></i>个人中心</li>
+            <li class="now" data-link="help"><i class="iconfont icon-question"></i>帮助</li>
+        </ul>
+    </footer>
+ </div>
+
+ <script src="{% static 'm/lib/template/template-web.js' %}"></script>
+ <script src="{% static 'm/lib/zepto/zepto.min.js' %}"></script>
+ <script src="{% static 'm/lib/zepto/touch.js' %}"></script>
+ <script src="{% static 'm/lib/sweetalert/sweetalert.min.js' %}"></script>
+ <script src="{% static 'm/js/common.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>定位结果列表</title>
+    <link rel="stylesheet" href="{% static 'm/lib/iconFont/iconfont.css' %}">
+    <link rel="stylesheet" href="{% static 'm/css/itemResult.css' %}">
+</head>
+<body>
+ <div class="wdw-container">
+    <!-- 头部  -->
+    <header class="wdw-header">
+        <a class="left" href="javascript:;"><i class="iconfont icon-left"></i></a>
+        <h1>定位结果</h1>
+        <a class="right" href="javascript:;"><i class="iconfont icon-sync"></i></a>
+    </header>
+    <!-- 定位标题 -->
+    <!-- <h2>喜欢你啊</h2> -->
+    <!-- 结果列表 -->
+    <ul class="result-list" style="margin-top: 10px">
+    </ul>
+ </div>
+
+ <script src="{% static 'm/lib/template/template-web.js' %}"></script>
+ <script id="result" type="text/x-art-html">
+    <? for(let i = resultList.length - 1; i >= 0; i--) { ?>
+        <li data-resultid="<?= resultList[i].id ?>">
+            <h3>
+                <? if (resultList[i].flag) { ?>精准定位<? }else { ?>模糊定位
+                <? } ?>
+            </h3>
+            <p>定位时间： <?= resultList[i].add_time ?></p> 
+            <i class="iconfont icon-right"></i>
+        </li>
+    <? } ?>
+ </script>
+ <script src="{% static 'm/lib/zepto/zepto.min.js' %}"></script>
+ <script src="{% static 'm/lib/zepto/touch.js' %}"></script>
+ <script src="{% static 'm/lib/zepto/selector.js' %}"></script>
+ <script src="{% static 'm/lib/sweetalert/sweetalert.min.js' %}"></script>
+ <script src="{% static 'm/js/common.js' %}"></script>
+ <script src="{% static 'm/js/itemResult.js' %}"></script>
+ <script>
+ </script>
+</body>
+</html>

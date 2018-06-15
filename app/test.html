@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>浏览器定位</title>
+    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.6&key=754fb443d364313111a264b2f6056ef5"></script>
+<body>
+<div id='container' style="width: 0;height: 0"></div>
+<script src="{% static 'dw/libs/remogeo/remogeo.js' %}"></script>
+<!--ip定位-->
+<script type="text/javascript" src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+<script src={% static 'dw/libs/zepto/zepto.js' %}""></script>
+<script type="text/javascript">
+    const ip = returnCitySN.cip; //ip地址
+    const key = '754fb443d364313111a264b2f6056ef5'; //地图的key
+    const openid = 12345;
+    const itemid = 45;
+    let map, geolocation;
+    //加载地图，调用浏览器定位服务
+    map = new AMap.Map('container', {});
+    //定位参数
+    map.plugin('AMap.Geolocation', function() {
+        geolocation = new AMap.Geolocation({
+            enableHighAccuracy: true, //是否使用高精度定位，默认:true
+            timeout: 8000, //超过10秒后停止定位，默认：无穷大
+            maximumAge: 0, //定位结果缓存0毫秒，默认：0
+            convert: true, //自动偏移坐标，偏移后的坐标为高德坐标，默认：true
+        });
+    // ios环境切换到使用远程https定位
+    if (AMap.UA.ios && document.location.protocol !== 'https:') {
+        //使用远程定位，见 remogeo.js
+        const remoGeo = new RemoGeoLocation();
+        //替换方法
+        navigator.geolocation.getCurrentPosition = function() {
+            return remoGeo.getCurrentPosition.apply(remoGeo, arguments);
+        };
+        //替换方法
+        navigator.geolocation.watchPosition = function() {
+            return remoGeo.watchPosition.apply(remoGeo, arguments);
+        };
+     }
+    map.addControl(geolocation);
+    geolocation.getCurrentPosition();
+    AMap.event.addListener(geolocation, 'complete', onComplete); //返回定位信息
+    AMap.event.addListener(geolocation, 'error', onError); //返回定位出错信息
+    });
+
+    //定位成功事件
+    function onComplete(data) {
+        const lng = data.position.getLng();
+        const lat = data.position.getLat();
+        gcToAd(lng, lat, 1, addReslut);  
+    }
+
+    //解析定位失败事件
+    function onError(data) {
+        ipPositin(ip);
+    }
+
+    
+    // ip定位
+    const ipPositin = (ip) => {
+        $.ajax({
+            url: 'http://restapi.amap.com/v3/ip',
+            type: 'get',
+            data: {
+                'key': key,
+                'ip': ip
+            },
+            datatype: 'json',
+            success: function (data) {
+                const rectangle = data.rectangle;
+                let [lone, ltwo] = rectangle.split(';');
+                lone = lone.split(',');
+                ltwo = ltwo.split(',');
+                const lng = ((lone[0] - 0) + (ltwo[0] - 0)) / 2;
+                const lat = ((lone[1] - 0) + (ltwo[1] - 0)) / 2;
+                gcToAd(lng, lat, 0, addReslut);
+            }
+        });
+    }
+
+    // 经纬度转换地址
+    const gcToAd = (lng, lat, flag, callback) => {
+        //发起转换地址请求
+        $.ajax({
+            url: 'http://restapi.amap.com/v3/geocode/regeo',
+            type: 'get',
+            data: {
+                'output': 'json', //返回格式
+                'location': `${lng},${lat}`, //坐标
+                'key': key,    //key值
+                'radius': '1000',
+                'extensions':'all'
+            },
+            dataType: 'json',
+            success: function (data) {
+                const regecode = data.regeocode;
+                //上传定位信息
+                callback && callback(lng, lat, regecode.formatted_address, ip, flag);          
+            }
+        });
+    }
+
+    // 上传定位信息
+    const addReslut = (lng, lat, address, ip, flag) => {
+        $.ajax({
+            url: 'http://127.0.0.1:8000/api/resultlist/',
+            type: 'post',
+            data: {
+                openid: openid,
+                itemid: itemid,
+                flag: flag,
+                ip: ip,
+                lng: lng,
+                lat: lat,
+                address: address
+            },
+            dataType: 'json',
+            success: (data) => {
+                console.log(data)
+            },
+            error: (data) => {
+                console.log(data)
+            }
+        })
+        console.log(lng + '====' +  lat + '====' +  address  + '====' +  ip);
+    }
+</script>
+<iframe src="http://127.0.0.1:8000/map/45gck2rlj0fu" style="width:100%;height:1000px" frameborder="0"></iframe>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+<script src="http://127.0.0.1:8080/template-web.js"></script>
+<script id="item" type="text/html">
+111
+</script>
+
+<script src="http://127.0.0.1:8000/static/m/js/zepto.js"></script>
+    <script>
+$(function () {
+    // const getOpenid = () => {
+    //     return window.location.pathname.split('/').pop();
+    //     }; 
+
+    
+
+    //     $.ajax({
+    //         url: '{% url "itemlist" %}',
+    //         type: 'get',
+    //         data: {
+    //             openid: getOpenid()
+    //         },
+    //         success: function (data) {
+    //             console.log(data)
+    //         }
+    //     }) 
+        })
+        var html = template('item');
+    console.log(html);
+    $('.item-list').append(html);
+</script>  
+</body>
+</html>
